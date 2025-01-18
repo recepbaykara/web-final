@@ -120,10 +120,10 @@ body {
 /* Ana pencere */
 .dropdown-container {
   position: absolute;
-  top: 108px;
+  top: 100px;
   left: 400px;
   width: 65%;
-  height: calc(100% - 140px);
+  height: calc(100% - 100px);
   background: white;
   display: flex; /* Flexbox düzeni */
   gap: 150px; /* Ürünler ile popüler aramalar arasındaki boşluk */

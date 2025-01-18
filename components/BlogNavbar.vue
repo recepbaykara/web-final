@@ -4,7 +4,7 @@
       <ul class="navbar-list">
         <li>
           <NuxtLink 
-            to="/" 
+            to="/blog" 
             exact-active-class="active-link"
             @click.native="setActive('blog')"
             :class="{'active': activeComponent === 'blog'}"
@@ -53,6 +53,10 @@
 
     <!-- Dinamik olarak componentleri göstermek -->
     <div>
+      <!-- Siyah boşluk eklemek için bir div ekledik -->
+      <div v-if="activeComponent === 'blog'" class="black-space" >
+        <img src="/static/images/div.png" alt="">
+      </div>
       <News v-if="activeComponent === 'blog' || activeComponent === 'news'" />
       <Brand v-if="activeComponent === 'blog' || activeComponent === 'brand'" />
     </div>
@@ -171,5 +175,13 @@ export default {
 .search-button:hover {
   background-color: green; /* Buton hover rengi */
   color: white; /* Buton hover yazı rengi beyaz */
+}
+
+/* Siyah boşluk eklemek için stil */
+.black-space {
+  background-color: black;
+  height: 650px; /* Yükseklik 200px */
+  width: calc(100% - 40px); /* Sağ ve sol boşluk için 40px - 20px margin */
+  margin: 20px; /* Sağ ve sol boşluk */
 }
 </style>

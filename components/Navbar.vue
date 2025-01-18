@@ -1,7 +1,9 @@
 <template>
   <nav class="navbar">
     <div class="logo-container">
-      <img src="/static/images/logo.png" alt="Logo" class="logo">
+      <nuxt-link to="/">
+        <img src="/static/images/logo.png" alt="Logo" class="logo">
+      </nuxt-link>
     </div>
     <ul class="menu">
       <!-- Yeniler Menüsü -->
@@ -57,7 +59,11 @@
       </li>
       
       <li><a href="#" class="discount">İndirim</a></li>
-      <li><a href="#">Blog</a></li>
+      <li>
+        <nuxt-link to="/blog">
+          Blog
+        </nuxt-link>
+      </li>
     </ul>
 
     <div class="nav-actions">
@@ -76,11 +82,11 @@
       
       <!-- Kullanıcı ve Sepet Butonları -->
       <div class="user-actions">
-        <button class="sign-in">
+        <nuxt-link to="/sign" class="sign-in">
           <i class="fas fa-user"></i>
           <img src="/static/images/sign-in.jpg" alt="" class="sign-in img">
           <span>Giriş | Üyelik</span>
-        </button>
+        </nuxt-link>
         <button class="basket" @click="toggleDropdown('cart', !menuStates.cart)">
           <i class="fas fa-shopping-basket"></i>
           <img src="/static/images/sepet-icon.png" alt="" class="basket img">
@@ -127,12 +133,17 @@ export default {
 </script>
 
 <style scoped>
+/* Navbar için sticky özellik */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px 25px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky; /* Yapışkan navbar */
+  top: 0; /* Üst kısmına yapışır */
+  background-color: white; /* Arka plan rengini beyaz yapıyoruz */
+  z-index: 1000; /* Üstte görünmesi için */
 }
 
 .logo-container {
