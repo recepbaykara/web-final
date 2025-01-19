@@ -42,33 +42,44 @@
 </template>
 
 <script>
-  export default {
-      props: {
-          product: {
-              type: Object,
-              required: true,
-          },
-      },
-      data() {
-          return {
-              sizes: ["XS", "S", "M", "L", "XL", "XXL"],
-          };
-      },
-      methods: {
-          closeModal() {
-              this.$emit("close");
-          },
-          goBack() {
-              this.$emit("close");
-          },
-          goToDetails() {
-              window.location.href = this.product.detailsUrl;
-          },
-          addToCart() {
-              alert(`${this.product.title} sepete eklendi!`);
-          },
-      },
-  };
+import { useCartStore } from '@/stores/cart'
+
+export default {
+  props: {
+    product: {
+      type: Object,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    };
+  },
+  methods: {
+    closeModal() {
+      this.$emit("close");
+    },
+    goBack() {
+      this.$emit("close");
+    },
+    goToDetails() {
+      window.location.href = this.product.detailsUrl;
+    },
+    addToCart() {
+      const cartStore = useCartStore()
+      cartStore.addToCart({
+        id: this.product.id || Math.random().toString(36).substr(2, 9),
+        image: this.product.image,
+        title: this.product.title,
+        price: this.product.price,
+        category: this.product.category
+      })
+      alert(`${this.product.title} sepete eklendi!`)
+      this.$emit("close")
+    },
+  },
+};
 </script>
 
 <style scoped>
